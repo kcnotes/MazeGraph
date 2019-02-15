@@ -12,6 +12,9 @@ typedef struct Graph {
     int currentTileY;
 } Graph;
 
+/* Helper functions */
+Tile createTile();
+
 /**
  * Creates a maze and allocates memory for it
  * @param  size the maximum square size of the maze
@@ -20,7 +23,7 @@ typedef struct Graph {
  * @return      the maze
  */
 Maze createMaze(int size, int x, int y) {
-	Graph maze = malloc(sizeof(Graph));
+	Maze maze = malloc(sizeof(Graph));
 	assert(maze != NULL);
 	maze->tiles = calloc(size * size, sizeof(Tile*));
 	assert(maze->tiles != NULL);
@@ -34,7 +37,7 @@ Maze createMaze(int size, int x, int y) {
 }
 
 void printMaze() {
-	
+	// Fill in this function
 }
 
 Tile getCurrentTile(Maze maze) {
@@ -50,11 +53,13 @@ Tile updateCurrentTile(Maze maze, int flagid, int status) {
 }
 
 Tile addPath(Maze maze, int direction) {
-	
+	// Fill in this function
+	return NULL;
 }
 
 Tile move(Maze maze, int direction) {
-	
+	// Fill in this function
+	return NULL;
 }
 
 // Helper functions

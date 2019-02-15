@@ -13,15 +13,15 @@
 
 // graph representation is hidden
 typedef struct Graph *Maze; // a maze is a graph
-struct Node {
+typedef struct Node {
 	short up; // true or false - i.e. a wall or not a wall
 	short left;
 	short down;
 	short right;
-	int flags[4] = { 0 }; // Flags
+	int flags[4]; // Flags
 	// TODO: define the flags (e.g. 'flag[0] = has a victim')
-};
-typedef struct Node *Tile;
+} Node;
+typedef Node *Tile;
 
 // Create a maze and a starting tile
 Maze createMaze(int size, int x, int y); 
