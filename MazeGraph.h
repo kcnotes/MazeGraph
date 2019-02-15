@@ -24,7 +24,8 @@ struct Node {
 typedef struct Node *Tile;
 
 // Create a maze and a starting tile
-Maze createMaze(int size); // Probably create a matrix of pointers to structs, because it would otherwise be hard to track new joins = prevent loops
+Maze createMaze(int size, int x, int y); 
+// Probably create a matrix of pointers to structs, because it would otherwise be hard to track new joins = prevent loops
 // Print current maze
 void printMaze();
 
