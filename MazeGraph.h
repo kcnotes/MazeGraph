@@ -14,21 +14,6 @@
 #define RIGHT 3
 
 /**
- * Graph contains
- *  - tiles, a 2D array of pointers to Nodes (2D array of Tiles)
- *  - currentTile, a way to keep track of the current position
- *  - currentTileX, the current x-axis grid number
- *  - currentTileY, the current y-axis grid number
- */
-typedef struct Graph {
-    Tile** tiles;
-    Tile currentTile;
-    int currentTileX;
-    int currentTileY;
-} Graph;
-typedef Graph *Maze; // 'Maze' is a pointer to a Graph
-
-/**
  * Node contains
  *  - up, 1 if up from the tile is not a wall, 0 otherwise
  *  - left, 1 if left from the tile is not a wall, 0 otherwise
@@ -47,6 +32,21 @@ typedef struct Node {
 } Node;
 typedef Node *Tile;
 
+/**
+ * Graph contains
+ *  - tiles, a 2D array of pointers to Nodes (2D array of Tiles)
+ *  - currentTile, a way to keep track of the current position
+ *  - currentTileX, the current x-axis grid number
+ *  - currentTileY, the current y-axis grid number
+ */
+typedef struct Graph {
+    Tile** tiles;
+    Tile currentTile;
+    int currentTileX;
+    int currentTileY;
+} Graph;
+typedef Graph *Maze; // 'Maze' is a pointer to a Graph
+
 // Create a maze with starting position x, y
 Maze createMaze(int size, int x, int y); 
 // Print current maze
@@ -59,7 +59,7 @@ Tile add(Maze maze, int direction);
 // Move current position to an adjacent tile
 Tile move(Maze maze, int direction);
 // Update status of current tile (flag ID from 0 to 3)
-// Tile updateCurrentTile(Maze maze, int flagid, int status);
+Tile updateCurrentTile(Maze maze, int flagid, int status);
 
 /* Helper functions */
 Tile createTile();
