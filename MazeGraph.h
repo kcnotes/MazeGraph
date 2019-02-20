@@ -44,6 +44,7 @@ typedef struct Graph {
     Tile currentTile;
     int currentTileX;
     int currentTileY;
+    int size;
 } Graph;
 typedef Graph *Maze; // 'Maze' is a pointer to a Graph
 
@@ -89,6 +90,7 @@ Maze createMaze(int size, int x, int y) {
 	maze->currentTile = maze->tiles[x][y];
 	maze->currentTileX = x;
 	maze->currentTileY = y;
+	maze->size = size;
 	return maze;
 }
 
