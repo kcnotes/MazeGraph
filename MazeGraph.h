@@ -73,12 +73,16 @@ Tile createTile();
  */
 Maze createMaze(int size, int x, int y) {
 	// Create space for a Graph
-	Maze maze = malloc(sizeof(Graph));
+	Maze maze = (Maze)malloc(sizeof(Graph));
 	assert(maze != NULL);
 	// Create space for the Tiles (pointers) in the Graph
 	// No need to actually make space for Nodes - will do when
 	// we find them, as there is limited memory.
-	maze->tiles = calloc(size * size, sizeof(Tile*));
+	maze->tiles = (Tile**)calloc(size, sizeof(Tile*));
+	int i;
+	for (i = 0; i < size; i++) {
+		maze->tiles[i] = (Tile*)calloc(size, sizeof(Tile));
+	}
 	assert(maze->tiles != NULL);
 	// Create starting tile
 	maze->tiles[x][y] = createTile();
@@ -163,7 +167,7 @@ Tile move(Maze maze, int direction) {
  * @return a pointer to the new tile
  */
 Tile createTile() {
-	Tile t = malloc(sizeof(Node));
+	Tile t = (Tile)malloc(sizeof(Node));
 	assert(t != NULL);
 	t->up = 0;
 	t->left = 0;
