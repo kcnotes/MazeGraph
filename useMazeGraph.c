@@ -26,4 +26,6 @@ int main() {
 	}
 	// print the maze
 	printMaze(maze);
+
+	return 0;
 }
