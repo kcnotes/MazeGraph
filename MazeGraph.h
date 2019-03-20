@@ -103,6 +103,20 @@ void printMaze(Maze maze) {
 	// check if a Tile exists (doesn't point to NULL), and 
 	// print out X or space.
 	// If it is a current tile, print O.
+	int x, y;
+	for (x = 0; x < maze->size; x++) {
+		for (y = 0; y < maze->size; y++) {
+			Tile tile = maze->tiles[x][y];
+			if (tile == NULL) {
+				printf(" ");
+			} else if (x == maze->currentTileX && y == maze->currentTileY) {
+				printf("O");
+			} else {
+				printf("X");
+			}
+		}
+		printf("\n");
+	}
 }
 
 /**
@@ -140,7 +154,22 @@ Tile add(Maze maze, int direction) {
 	// To fill in this function, you need to update the 
 	// currentTile's up, down, left or right depending on what
 	// direction was supplied.
-	return NULL; // remove this line if not needed
+	Tile current = maze->currentTile;
+	switch(direction){
+		case UP:
+			current->up = 1;
+			break;
+		case LEFT:
+			current->left = 1;
+			break;
+		case DOWN:
+			current->down = 1;
+			break;
+		case RIGHT:
+			current->right = 1;
+			break;
+	}
+	return current; // remove this line if not needed
 }
 
 /**
@@ -161,7 +190,33 @@ Tile move(Maze maze, int direction) {
 	// need to add or subtract those numbers.
 	// You will then look at the 2D array to get the new tile,
 	// and create one if necessary.
-	return NULL; // remove this line if not needed
+	Tile current = maze->currentTile;
+	switch(direction){
+		case UP:
+			if (!current->up || maze->currentTileX == 0) return NULL;
+			maze->currentTileX--;
+			break;
+		case LEFT:
+			if (!current->left || maze->currentTileY == 0) return NULL;
+			maze->currentTileY--;
+			break;
+		case DOWN:
+			if (!current->down || maze->currentTileX == maze->size - 1) return NULL;
+			maze->currentTileX++;
+			break;
+		case RIGHT:
+			if (!current->right || maze->currentTileY == maze->size - 1) return NULL;
+			maze->currentTileY++;
+			break;
+	}
+	// Create tile if it doesn't exist
+	if (maze->tiles[maze->currentTileX][maze->currentTileY] == NULL) {
+		maze->tiles[maze->currentTileX][maze->currentTileY] = createTile();
+	}
+	maze->currentTile = maze->tiles[maze->currentTileX][maze->currentTileY];
+	// Update current tile
+	add(maze, direction);
+	return maze->currentTile; // remove this line if not needed
 }
 
 /**
