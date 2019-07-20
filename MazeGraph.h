@@ -8,10 +8,10 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#define UP 0
-#define LEFT 1
-#define DOWN 2
-#define RIGHT 3
+#define UP 1
+#define LEFT 2
+#define DOWN -1
+#define RIGHT -2
 
 /**
  * Node contains
@@ -215,7 +215,7 @@ Tile move(Maze maze, int direction) {
 	}
 	maze->currentTile = maze->tiles[maze->currentTileX][maze->currentTileY];
 	// Update current tile
-	add(maze, direction);
+	add(maze, -direction);
 	return maze->currentTile; // remove this line if not needed
 }
 
